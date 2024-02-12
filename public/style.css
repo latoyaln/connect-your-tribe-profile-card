@@ -1,52 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
-* {
-  box-sizing: border-box;
+*{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  font-family: Helvetica, Arial, sans-serif;
-  background: silver;
+@font-face {
+  font-family: 'SharpGroteskBold';
+  src: url('/fonts/SharpGroteskBold.otf') format(OpenType);
+  font-weight: bold;
+  font-style: normal;
 }
 
-header {
-  padding: 0.5rem;
-  background: red;
-  color: white;
+@font-face {
+  font-family: 'SharpGroteskMedium';
+  src: url('/fonts/SharpGrotesk-Medium20.otf') format(OpenType);
+  font-weight: normal;
+  font-style: normal;
+}
 
-  h1 {
-    text-transform: uppercase;
+:root{
+  /*fonts*/
+      /*family*/
+      --headings: 'SharpGroteskBold', 'Poppins', Sans-Serif;
+      --paragraphs: 'SharpGroteskMedium', 'Poppins', Sans-Serif;
+      /*sizes*/
+      --h1: 3rem;
+      --h2: 2rem;
+      --p: 1.2rem;
+  
+  /*colors*/
+  --lightbeige-bg: #F8FAE5; 
+  --black: #000;
+  --white: #fff;
+  /*margins, paddings and sizes*/
+     /*sizes*/
+     --full-width-height: 100%;
+}
+
+h1, h2, h3{
+  font-family: var(--headings);
+  padding-left: 1.5rem;
+}
+h1{
+  font-size: var(--h1);
+}
+
+p{
+  font-family: var(--paragraphs);
+  padding-left: 1.5rem;
+}
+
+label {
+  position: absolute;
+  display: block;
+  width: 500px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+
+  & .la-card{
+    position: relative;
+    width: var(--full-width-height);
+    height: var(--full-width-height);
+    transform-style: preserve-3d;
+    z-index: 20;
+    transition: all 600ms;
+    background: var(--lightbeige-bg);
+
+    & .fading-circle{
+      left: 60%;
+      width: 150px;
+      height: 150px;
+      background-image: radial-gradient( red 5px, var(--lightbeige-bg) 50px);
+      opacity: 0.5;
+    }
+
+    & img {
+      max-width: 15%;
+    }
+      & div, article{
+        position: absolute;
+        width: var(--full-width-height);
+        height: var(--full-width-height);
+        color: var(--black);
+        backface-visibility: hidden;
+      }
+
+      & .back-la-card{
+        transform: rotateX(180deg);
+
+    }
+    & .front-la-card ul{
+      list-style: none;
+      display: flex;
+      padding: 0.5rem;
+
+      & li{
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      }
+      & .fading-circle{
+   
+    }
+  }
+  input {
+    display: none;
   }
 }
 
-article {
+label:hover .la-card{
+  transform: rotateX(20deg);
+  box-shadow: 0 21px 21px rgba(50, 50, 50, .4);
+}
+
+:checked + .la-card{
+  transform: rotateX(180deg);
+}
+
+label:hover :checked + .la-card{
+  transform: rotateX(160deg);
+  box-shadow: 0 20px 20px rgba (50, 50, 50, .4);
+}
+
+.row {
   display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  width: 12rem;
-  aspect-ratio: 1/1;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  background: white;
-  text-align: center;
-  transform-origin: center;
-  transform: rotate(2deg);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  > p {
-    font-size: 2rem;
-    font-family: 'Permanent Marker', cursive;
-    transform-origin: center;
-    transform: rotate(-6deg);
-    word-break: break-all;
-  }
+  align-items: center;
 }
-
-footer {
-  height: 1rem;
-  background: red;
+/*Hier kies ik ervoor om row en col te gebruiken om mijn tekst in 1 rij en column te zetten*/
+.row p {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+/*Hier zet ik streepjes tussen de verschillende col elementen*/
+.row p:not(:last-child)::after {
+  content: "";
+  width: 0.1em;
+  height: 1em;
+  background: #004526;
+  position: absolute;
+  top: 0.4em;
+  right: 0;
 }

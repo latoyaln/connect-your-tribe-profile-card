@@ -5,7 +5,7 @@ import express from 'express'
 import fetchJson from './helpers/fetch-json.js'
 
 // Haal data op uit de FDND API, ga pas verder als de data gedownload is
-const data = await fetchJson('https://fdnd.directus.app/items/person/65')
+const data = await fetchJson('https://fdnd.directus.app/items/person/49')
 // console.log(data); // uncomment om de opgehaalde data te checken
 
 // Maak een nieuwe express app aan
@@ -18,6 +18,8 @@ app.set('views', './views')
 
 // Gebruik de map 'public' voor statische resources
 app.use(express.static('public'))
+app.use('/images', express.static('images'));
+
 
 // Maak een GET route voor de index
 app.get('/', function (request, response) {

@@ -1,14 +1,28 @@
 <%- include('./partials/head') %>
 
-<article>
-  <header>
-    <h1>Hallo</h1>
-    <p>mijn naam is</p>
-  </header>
 
-  <p><%= data.name %></p>
+<div class="container-la-card">
+ 
+  </div>
+</div>
 
+<label>
+  <input type="checkbox"/>
+  <div class="la-card">
+
+    <article class="front-la-card">
+      <div class="fading-circle"></div>
+      <h1><%= data.name %></h1>
+      <h1><%= data.surname %></h1>
+
+      <p>Frontend Developer</p>
+      <div class="row"> <p>HTML/CSS</p> <p>JS</p><p>PHP</p> <p>C#</p></div>
+     
+      </article>
+    <article class="back-la-card"> <h2><%= data.name %> <%= data.surname %></h2> 
+      <p><%= data.bio %></p>
+    </article>
+</label>
   <footer></footer>
-</article>
 
 <%- include('./partials/foot') %>
